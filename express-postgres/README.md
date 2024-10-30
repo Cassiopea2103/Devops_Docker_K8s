@@ -169,4 +169,52 @@ Here is the github repo containing the project :
 
 
 
+# K8s 
 
+## README for running the app on K8S 
+### All k8s configurations files are in the k8s folder of the project ) 
+# Kubernetes Setup for Express and PostgreSQL Application
+
+## Prerequisites
+
+- Kubernetes cluster (e.g., using Minikube)
+- Kubectl installed and configured
+
+## Steps to Run the Application
+
+1. **Start Minikube with 3 Nodes:**
+   ```bash
+   minikube start --nodes 3 --driver=docker
+   ```   
+2. **Apply K8s manifest files**
+ ```bash
+ kubectl apply -f k8s/database-secret.yml
+  kubectl apply -f k8s/database-configmap.yml
+  kubectl apply -f k8s/database-deployment.yml
+  kubectl apply -f k8s/database-service.yml
+  kubectl apply -f k8s/backend-secret.yml
+  kubectl apply -f k8s/backend-configmap.yml
+  kubectl apply -f k8s/backend-deployment.yml
+  kubectl apply -f k8s/backend-service.yml
+  kubectl apply -f k8s/database-network-policy.yml
+  ```
+
+
+3. **Check services**
+```bash
+kubecl get services
+```
+4. **Access the app**
+ ```bash
+ minikube service backend-service --url
+```
+`We can then interact with the URL provided to reach out to our backend server`
+
+5. **Verify deployments**
+ ```bash
+kubectl get pods
+```
+
+  
+  
+  
