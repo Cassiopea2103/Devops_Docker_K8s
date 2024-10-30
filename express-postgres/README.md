@@ -199,23 +199,29 @@ Here is the github repo containing the project :
   kubectl apply -f k8s/database-network-policy.yml
   ```
 
+3. **Verify pods**
+ ```bash
+kubectl get pods
+```
+![77 runningpods](https://github.com/user-attachments/assets/f1a3a6f4-c142-423f-a3a1-02f2f369efae)
 
-3. **Check services**
+
+4. **Check services**
 ```bash
 kubectl get services
 ```
+![78 services url](https://github.com/user-attachments/assets/98d2f0a5-94d5-4320-a20a-87f26dfa7921)
+
+
 4. **Access the app**
  ```bash
  minikube service backend-service --url
 ```
 `We can then interact with the URL provided to reach out to our backend server`
+<small>_In our case , our BASE url is http://127.0.0.1:58771_</small>
 
-5. **Verify deployments**
- ```bash
-kubectl get pods
-```
 
-6. Test the k8s deployments
-  
-  
-  
+5. **Test the k8s deployments**
+Creating user :
+![79 test](https://github.com/user-attachments/assets/5b0632f1-802c-436a-ad23-d30ec5bbc955)
+
