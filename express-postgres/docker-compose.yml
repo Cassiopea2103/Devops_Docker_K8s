@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - my-network
+      - backend_network
 
   backend_app:
     build: .
@@ -21,8 +21,8 @@ services:
     depends_on:
       - postgres_db
     networks:
-      - my-network
+      - backend_network
 
 networks:
-  my-network:
+  backend_network:
     driver: bridge
