@@ -84,5 +84,16 @@ app.delete('/users/:id', async (req, res) => {
   }
 });
 
+
+// Health check endpoints
+app.get('/health/ready', (req, res) => {
+    res.status(200).json('Ready');
+  });
+  
+  app.get('/health/live', (req, res) => {
+    res.status(200).json('Live');
+  });
+  
+
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
