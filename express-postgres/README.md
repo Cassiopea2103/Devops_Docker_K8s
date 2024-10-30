@@ -10,7 +10,7 @@ Département Génie Informatique et Télécoms
 <h1  align="center"><font  color="#3581B8">
 K8S lab
 </h1>
-![k8s](https://github.com/user-attachments/assets/94c0349d-ad03-4323-8c20-5b4cc70e6e9d)
+<img src="https://github.com/user-attachments/assets/202dd906-7e7f-4de5-acf9-0b9bf88abe6f" />
 <div align="left">
 <small align="left">By </small><i>Serigne Saliou WADE</i>
 
@@ -26,21 +26,27 @@ K8S lab
 #### 1. Express backend app 
 We create a simple node/express backend with basic CRUD operations on users with a Posgres database . 
 
-`Basic folder structure for our project`
-IMAGE
+`Basic folder structure for our project`  
+![1 folder_structure](https://github.com/user-attachments/assets/cdf76d7b-04e8-4839-978b-0c1ad8330b0b)
 
-`db.js` file content : 
 
-`index.js`
+`db.js` file content :   
+![2 db js](https://github.com/user-attachments/assets/64befbc0-4203-46a4-ac45-0baca1ac75f7)
 
-`Dockerfile`
+  
+`index.js`  
+![3 index js](https://github.com/user-attachments/assets/a06c11ea-04f6-4f98-970d-6d2cd5c92d95)
 
-`.env file contains our local database confiurations` 
+
+`.env file contains our local database confiurations`   
+![4 env](https://github.com/user-attachments/assets/2f55f818-88f9-43b6-a633-4f52ac6ed0bc)
+
 
 #### 2. Building the app with Docker and running it locally 
 For that , we have the `Dockerfile` , with the following content :
 
-IMAGE 
+![5 Dokerfile](https://github.com/user-attachments/assets/79799a9e-7165-4dd9-a7c0-034a796f48c1)
+
 
 We can pull the postgres image from docker hub  
 ```docker 
@@ -52,13 +58,13 @@ After which we have to create a network for our containers to communicate :
 docker network create backend_network 
 ``` 
 
-after which we can run the database image seperately to have our db container ( run the database within the network ) : 
+We then run the database image seperately to have our db container ( run the database within the network ) : 
 
 ```docker
 docker run --name postgres_db --network=backend_network -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=Saliou2103wade -e POSTGRES_DB=company -p 5432:5432 -d postgres
 ```
 
-With our database container running , we can create our backend image and run it on a container : 
+With our database container running , we can now create our backend server image and run it on a container : 
 
 * create docker image for the backend
 ```docker 
@@ -68,9 +74,10 @@ docker build -t backend_app .
 * run the image on the same network as the database :
 ```docker 
 docker run --name backend_container --network backend_network -p 3000:3000 backend_app 
-```    
+```      
+![7 docker_build_docker_images](https://github.com/user-attachments/assets/c6e83dca-319e-413b-a5be-637c285dbcd0)
 
-IMAGE 
+![8 app_container_started_connected_to_db](https://github.com/user-attachments/assets/881f86f4-aca5-49a9-8200-f97855543af6)
 
 ---
 #### Pushing the app to Docker hub 
@@ -87,11 +94,13 @@ docker login
 3. push the image to docker hub 
 ```docker 
 docker push cassiopea21/backend_app 
-```  
+```
+![9 dockerhub_images](https://github.com/user-attachments/assets/ec4c4a51-bb29-42e8-8ee5-ee7e124f55bd)
+
 
 #### Docker compose configuration 
-IMAGE 
-  
+![docker-compose](https://github.com/user-attachments/assets/fc6e0a30-96b0-4f99-8a02-c969fb010633)
+
     
  
 
@@ -136,12 +145,23 @@ After running
 ```docker 
 docker-compose up 
 ```
+
+![10 docker-compose-success](https://github.com/user-attachments/assets/c74458b5-1fc9-4187-8cb0-8069bb78976a)
+
 we can then perform test on our backend applications with its exposed PORTS 
 
-* CREATING USERS 
-* GETTING USERS LIST 
-* UPDATING A USER 
-* DELETING USER 
+* CREATING USER
+  ![12 test-create](https://github.com/user-attachments/assets/a1636905-fa57-4189-a046-e16d53e53cf3)
+
+* GETTING USERS LIST
+  ![11 test-backend-get](https://github.com/user-attachments/assets/f34f8cfe-64c5-46f0-b8bf-0d302eea52f8)
+
+* UPDATING A USER
+  ![14 test-update](https://github.com/user-attachments/assets/ddd864a0-0440-4676-9b21-a06e7c2e37bf)
+
+* DELETING USER
+  ![13 test-delete](https://github.com/user-attachments/assets/f0f4de00-8bcf-4248-b42f-8b315ff9cbc0)
+  
 
 
 Here is the github repo containing the project : 
