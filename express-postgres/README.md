@@ -202,7 +202,7 @@ Here is the github repo containing the project :
 
 3. **Check services**
 ```bash
-kubecl get services
+kubectl get services
 ```
 4. **Access the app**
  ```bash
