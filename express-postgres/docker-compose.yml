@@ -8,8 +8,16 @@ services:
       - .env 
     ports:
       - "5432:5432"
+    volumes:
+    - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend_network
+    # check if postgres is initialized and ready to accept connections:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend_app:
     build: .
@@ -19,7 +27,8 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - postgres_db
+      postgres_db:
+        condition: service_healthy
     networks:
       - backend_network
 
