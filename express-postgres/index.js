@@ -87,11 +87,11 @@ app.delete('/users/:id', async (req, res) => {
 
 // Health check endpoints
 app.get('/health/ready', (req, res) => {
-    res.status(200).json('Ready');
+    res.status(200).send('Ready');
   });
   
   app.get('/health/live', (req, res) => {
-    res.status(200).json('Live');
+    res.status(200).send('Live');
   });
   
 
